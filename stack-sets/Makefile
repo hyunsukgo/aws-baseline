@@ -4,13 +4,13 @@ LIST_STACK_SETS_COMMAND=@aws cloudformation list-stack-sets --status ACTIVE --qu
 
 TAG_VALUE=Tags[?Key=='$(1)'].Value|[0]||''
 
-TARGET_REGIONS=ap-northeast-2 ap-northeast-1
+TARGET_REGIONS=ap-northeast-2
 
-MAIN_ACCOUNTS_ONLY=268875736166
+MAIN_ACCOUNTS_ONLY=140499857323
 
-SUB_ACCOUNTS_ONLY=206924800932 815637454826
+SUB_ACCOUNTS_ONLY=980637231723 543945541886
 
-ALL_ACCOUNTS=268875736166 206924800932 815637454826
+ALL_ACCOUNTS=140499857323 980637231723 543945541886
 
 stack-sets:
 	 $(LIST_STACK_SETS_COMMAND) | (xargs -n 1 -P 15 aws cloudformation describe-stack-set --query "StackSet.{\"1.Name\":StackSetName, \"2.Tags\":join(', ', Tags[].join('=', [Key,Value]))}" --stack-set-name) | jq -s -c 'sort_by(."1.Name")' | python3 ../scripts/json_table.py StackSets

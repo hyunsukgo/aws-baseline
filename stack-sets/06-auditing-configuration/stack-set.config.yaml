@@ -3,8 +3,9 @@ capabilities:
   - CAPABILITY_IAM
 #all-accounts: false
 accounts:
-  - 037729278610
-  - 751659651428
+  - 140499857323
+  - 980637231723
+  - 543945541886
 #all-regions: false
 #excluded-regions:
 #  - eu-north-1

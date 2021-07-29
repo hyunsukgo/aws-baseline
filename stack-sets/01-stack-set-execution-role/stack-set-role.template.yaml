@@ -9,15 +9,17 @@ Resources:
       AssumeRolePolicyDocument:
         Statement:
           Effect: Allow
+          Version: '2012-10-17'
           Principal:
             AWS: !Sub 
-                - arn:aws:iam::${MainAccount}:role/AWSCloudFormationStackSetAdministrationRole
-                - { MainAccount: !Ref MainAccount}
-          Action: sts:AssumeRole
+              - arn:aws:iam::${MainAccount}:role/AWSCloudFormationStackSetAdministrationRole
+              - MainAccount: !Ref MainAccount
+          Action: 
+          - sts:AssumeRole
       Policies:
         - PolicyName: AWSCloudFormationStackSetExecutionRoleAdminPolicy
           PolicyDocument:
-            Version: '2008-10-17'
+            Version: '2012-10-17'
             Statement:
               - Sid: AdminPolicy
                 Effect: Allow
